@@ -113,6 +113,11 @@ class TableCalendar extends StatefulWidget {
   /// Most of the time it should be `false`.
   final bool animateProgSelectedDay;
 
+
+  /// Used to disable the callback `onDaySelected` when programmatically setting in the constructor `selectedDay`.
+  /// Most of the time it should be `true`.
+  final bool triggerCallbackProgSelectedDay;
+
   /// Animation to run when `CalendarFormat` gets changed.
   final FormatAnimation formatAnimation;
 
@@ -164,6 +169,7 @@ class TableCalendar extends StatefulWidget {
     this.headerVisible = true,
     this.rowHeight,
     this.animateProgSelectedDay = false,
+    this.triggerCallbackProgSelectedDay = true,
     this.formatAnimation = FormatAnimation.slide,
     this.startingDayOfWeek = StartingDayOfWeek.sunday,
     this.dayHitTestBehavior = HitTestBehavior.deferToChild,
@@ -213,6 +219,7 @@ class _TableCalendarState extends State<TableCalendar> with SingleTickerProvider
             final runCallback = _calendarLogic.setSelectedDay(
               widget.selectedDay,
               isAnimated: widget.animateProgSelectedDay,
+              runCallbackWhenProgrammatic: widget.triggerCallbackProgSelectedDay,
               isProgrammatic: true,
             );
 

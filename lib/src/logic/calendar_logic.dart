@@ -101,7 +101,7 @@ class CalendarLogic {
     _calendarFormat.value = formats[id];
   }
 
-  bool setSelectedDay(DateTime value, {bool isAnimated = true, bool isProgrammatic = false}) {
+  bool setSelectedDay(DateTime value, {bool isAnimated = true, bool runCallbackWhenProgrammatic = true, bool isProgrammatic = false}) {
     if (Utils.isSameDay(value, _selectedDay)) {
       return false;
     }
@@ -121,7 +121,7 @@ class CalendarLogic {
       _visibleDays.value = _getVisibleDays();
     }
 
-    return true;
+    return !isProgrammatic || runCallbackWhenProgrammatic;
   }
 
   void selectPrevious() {
